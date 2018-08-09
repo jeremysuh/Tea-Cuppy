@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
+        // Create the adapter that will return a fragment for each of the four
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
@@ -108,13 +109,64 @@ public class MainActivity extends AppCompatActivity {
             return fragment;
         }
 
+        View rootView;
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+
+            //change view based on section
+            switch (getArguments().getInt(ARG_SECTION_NUMBER)){
+
+                case 1:{
+
+                    rootView = inflater.inflate(R.layout.fragment_main, container, false);
+                    TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+                    textView.setText("Tea: " + getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+
+
+                    return rootView;
+
+                }
+
+                case 2:{
+
+                    rootView = inflater.inflate(R.layout.fragment_tea, container, false);
+                    TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+                    textView.setText("Timer: " + getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+
+
+                    return rootView;
+
+
+                }
+
+                case 3:{
+
+                    rootView = inflater.inflate(R.layout.fragment_main, container, false);
+                    TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+                    textView.setText("Personal: " + getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+
+
+                    return rootView;
+
+
+                }
+
+                case 4:{
+
+                    rootView = inflater.inflate(R.layout.fragment_tea, container, false);
+                    TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+                    textView.setText("Places " + getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+
+
+                    return rootView;
+                }
+
+
+            }
             return rootView;
+
         }
     }
 
@@ -137,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
+            // Show 4 total pages.
             return 4;
         }
     }
