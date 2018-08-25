@@ -1,13 +1,18 @@
 package com.jeremysuh.teacuppy;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -22,10 +27,12 @@ public class Tea_List extends Fragment {
     private RecyclerView recyclerView;
     private TeaAdapter mAdapter;
 
+    private static boolean listInitialized = false;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_tea, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_tea, container, false);
        // TextView textview = (TextView) rootView.findViewById(R.id.text_test);
         //textview.setText("wee woo");
 
@@ -39,10 +46,26 @@ public class Tea_List extends Fragment {
             recyclerView.setLayoutManager(mLayoutManager);
             recyclerView.setItemAnimator(new DefaultItemAnimator());
             recyclerView.setAdapter(mAdapter);
+            recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),
+                    DividerItemDecoration.VERTICAL));
 
 //        Log.d("yee", "this exists....llolololo");
 
-            initTeaData();
+        FloatingActionButton add_tea_button = rootView.findViewById(R.id.add_button);
+        add_tea_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getActivity(), TeaDetail.class);
+                startActivity(intent);
+
+            }
+        });
+
+
+
+        if (!listInitialized) initTeaData();
+            listInitialized = true;
 
 
 
@@ -52,6 +75,8 @@ public class Tea_List extends Fragment {
 
 
     public void initTeaData(){
+
+
         Tea tea = new Tea("Black Tea", "20");
         teaList.add(tea);
 
@@ -64,10 +89,18 @@ public class Tea_List extends Fragment {
         tea = new Tea("Yellow Tea", "20");
         teaList.add(tea);
 
-        tea = new Tea("Fire Tea", "20");
+        tea = new Tea("Jasmine Tea", "20");
         teaList.add(tea);
 
-        Log.d("yee", "this exists....wooo");
+        tea = new Tea("Whey Tea", "30");
+        teaList.add(tea);
+
+        tea = new Tea(" Milk Tea", "20");
+        teaList.add(tea);
+
+        tea = new Tea("Flower Bad Tea", "20");
+        teaList.add(tea);
+
 
         mAdapter.notifyDataSetChanged();
 
