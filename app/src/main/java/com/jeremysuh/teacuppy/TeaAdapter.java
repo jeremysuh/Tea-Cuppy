@@ -1,4 +1,6 @@
 package com.jeremysuh.teacuppy;
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
@@ -13,8 +15,11 @@ import java.util.List;
 public class TeaAdapter extends RecyclerView.Adapter<TeaAdapter.TeaViewHolder>{
 
     private List<Tea> teaList;
+    private Context context;
 
-    public TeaAdapter(List<Tea> tealist){
+    public TeaAdapter(List<Tea> tealist, Context context){
+
+        this.context = context;
 
         this.teaList = tealist;
     }
@@ -26,7 +31,8 @@ public class TeaAdapter extends RecyclerView.Adapter<TeaAdapter.TeaViewHolder>{
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                Intent intent = new Intent(context, TeaDetail.class);
+                context.startActivity(intent);
             }
         });
         return new TeaViewHolder(itemView);

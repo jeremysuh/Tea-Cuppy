@@ -21,7 +21,7 @@
         </activity>
         <activity
             android:name=".TeaDetail"
-            android:label="@string/title_activity_tea_detail"
+            android:label="@string/tea_details"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".MainActivity"
             ></activity>

@@ -41,7 +41,7 @@ public class Tea_List extends Fragment {
             recyclerView = (RecyclerView) rootView.findViewById(R.id.tea_list);
 
 
-            mAdapter = new TeaAdapter(teaList);
+            mAdapter = new TeaAdapter(teaList, getActivity());
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
             recyclerView.setLayoutManager(mLayoutManager);
             recyclerView.setItemAnimator(new DefaultItemAnimator());
