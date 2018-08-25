@@ -7,7 +7,7 @@
     <string name="select">Select</string>
 
     <string name="tea_details">Tea Details</string>
-    <string name="add_tea">Add Tea</string>
+    <string name="tea_add">Add Tea</string>
 
 
     <string name="action_settings">Settings</string>
@@ -16,4 +16,5 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_tea_detail">TeaDetail</string>
+    <string name="title_activity_tea_add">TeaAdd</string>
 </resources>

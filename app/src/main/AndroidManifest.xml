@@ -22,9 +22,13 @@
         <activity
             android:name=".TeaDetail"
             android:label="@string/tea_details"
-            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".MainActivity"
-            ></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".TeaAdd"
+            android:label="@string/tea_add"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

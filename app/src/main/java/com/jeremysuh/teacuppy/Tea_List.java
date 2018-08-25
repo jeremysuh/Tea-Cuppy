@@ -56,7 +56,7 @@ public class Tea_List extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getActivity(), TeaDetail.class);
+                Intent intent = new Intent(getActivity(), TeaAdd.class);
                 startActivity(intent);
 
             }
