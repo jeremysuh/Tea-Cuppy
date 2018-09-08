@@ -50,6 +50,8 @@
 
 
 
+
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -75,16 +77,40 @@
             android:layout_weight="0.1"
             >
 
-            <TextView
-                android:id="@+id/imageView6"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingHorizontal="16dp"
-                android:textSize="16sp"
-                android:text="This is a sample description for caffeine count."
-                />
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView33"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:text="Brew Time: 80 s"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:textSize="18sp"
+                    android:textAlignment="center"
+                    />
+
+
+                <TextView
+                    android:id="@+id/textViewk33"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:text="Caffeine: 50 mg"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:textSize="18sp"
+                    android:textAlignment="center"
+                    />
+
+
+            </LinearLayout>
 
         </RelativeLayout>
+
 
         <RelativeLayout
             android:layout_width="match_parent"
