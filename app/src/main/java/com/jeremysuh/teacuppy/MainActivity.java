@@ -1,5 +1,6 @@
 package com.jeremysuh.teacuppy;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -15,6 +16,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TabHost;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,12 +50,17 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Log.d("fire", "fire");
+
 
          //Create the adapter that will return a fragment for each of the four
        //  primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-       //  Set up the ViewPager with the sections adapter.
+        Log.d("fire", "grass");
+
+
+        //  Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
@@ -61,6 +68,9 @@ public class MainActivity extends AppCompatActivity {
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+
+        Log.d("fire", "purple");
+
 
     }
 
@@ -73,6 +83,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onResume(){
+        super.onResume();
+
+
+        Log.d("fire", "water");
+    }
+
+        @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -87,6 +105,20 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d("fire", ""+requestCode);
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 2) {
+            TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+            TabLayout.Tab tab = tabLayout.getTabAt(1);
+            tab.select();
+        }
+
+    }
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -114,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
             }
          //   return PlaceholderFragment.newInstance(position + 1);
         }
+
+
 
         @Override
         public int getCount() {

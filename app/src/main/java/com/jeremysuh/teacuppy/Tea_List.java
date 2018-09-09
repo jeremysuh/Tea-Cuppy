@@ -56,8 +56,10 @@ public class Tea_List extends Fragment {
             @Override
             public void onClick(View view) {
 
+
                 Intent intent = new Intent(getActivity(), TeaAdd.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
+
 
             }
         });
@@ -74,31 +76,54 @@ public class Tea_List extends Fragment {
     }
 
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d("fire", "just success testing");
+
+        super.onActivityResult(requestCode, resultCode, data);
+        add_tea();
+
+
+
+    }
+
+
+    public void updateAdapter(){
+        mAdapter.notifyDataSetChanged();
+
+    }
+
+    public void add_tea(){
+        teaList.add(new Tea("test tea", "50", 2, "desc", 5));
+        updateAdapter();
+    }
+
+
     public void initTeaData(){
 
 
-        Tea tea = new Tea("Black Tea", "20");
+        Tea tea = new Tea("Black Tea", "20", 5, "1", 1);
         teaList.add(tea);
 
-        tea = new Tea("Green Tea", "40");
+        tea = new Tea("Green Tea", "40", 5, "1", 1);
         teaList.add(tea);
 
-        tea = new Tea("Oolong Tea", "30");
+        tea = new Tea("Oolong Tea", "30", 5, "1", 1);
         teaList.add(tea);
 
-        tea = new Tea("Yellow Tea", "20");
+        tea = new Tea("Yellow Tea", "20", 5, "1", 1);
         teaList.add(tea);
 
-        tea = new Tea("Jasmine Tea", "20");
+        tea = new Tea("Jasmine Tea", "20", 5, "1", 1);
         teaList.add(tea);
 
-        tea = new Tea("Whey Tea", "30");
+        tea = new Tea("Whey Tea", "30", 5, "1", 1);
         teaList.add(tea);
 
-        tea = new Tea(" Milk Tea", "20");
+        tea = new Tea(" Milk Tea", "20", 5, "1", 1);
         teaList.add(tea);
 
-        tea = new Tea("Flower Bad Tea", "20");
+        tea = new Tea("Flower Bad Tea", "20", 5, "1", 1);
         teaList.add(tea);
 
 

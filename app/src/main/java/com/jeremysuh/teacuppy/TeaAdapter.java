@@ -1,4 +1,5 @@
 package com.jeremysuh.teacuppy;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -32,11 +33,13 @@ public class TeaAdapter extends RecyclerView.Adapter<TeaAdapter.TeaViewHolder>{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, TeaDetail.class);
-                context.startActivity(intent);
+                ((Activity) context).startActivityForResult(intent, 2);
             }
         });
         return new TeaViewHolder(itemView);
     }
+
+
 
     @Override
     public void onBindViewHolder(@NonNull TeaAdapter.TeaViewHolder holder, int position) {
