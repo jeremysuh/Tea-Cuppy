@@ -8,11 +8,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        >
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
+            android:screenOrientation="portrait"
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,12 +27,19 @@
             android:name=".TeaDetail"
             android:label="@string/tea_details"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
+
+            />
         <activity
             android:name=".TeaAdd"
             android:label="@string/tea_add"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+
+            android:screenOrientation="portrait"
+
+            ></activity>
     </application>
 
 </manifest>
