@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         //  Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setOffscreenPageLimit(4);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -110,9 +111,16 @@ public class MainActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d("fire", ""+requestCode);
 
+
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 2) {
+        if (requestCode == 2 && resultCode == TeaDetail.GO_TO_TIMER) {
+
+            Log.d("fire", data.getStringExtra("testy"));
+
+            Timer.update(data.getStringExtra("tea_name"), Integer.parseInt(data.getStringExtra("tea_time")));
+
+
             TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
             TabLayout.Tab tab = tabLayout.getTabAt(1);
             tab.select();
@@ -137,10 +145,14 @@ public class MainActivity extends AppCompatActivity {
 
             switch (position) {
 
-                case 0: return new Tea_List();
-                case 1: return new Timer();
-                case 2: return new Personal();
-                case 3: return new Places();
+                case 0:
+                    return new Tea_List();
+                case 1:
+                    return new Timer();
+                case 2:
+                    return new Personal();
+                case 3:
+                    return new Places();
                 default: return null;
 
             }

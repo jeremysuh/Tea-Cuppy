@@ -24,7 +24,7 @@
         app:srcCompat="@mipmap/ic_launcher_round" />
 
     <TextView
-        android:id="@+id/tea_name"
+        android:id="@+id/ff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"

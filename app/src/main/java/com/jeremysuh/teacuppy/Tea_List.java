@@ -38,13 +38,17 @@ public class Tea_List extends Fragment {
 
         //avoid duplicate? idk yet..
 
-            recyclerView = (RecyclerView) rootView.findViewById(R.id.tea_list);
+
+
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.tea_list);
 
 
             mAdapter = new TeaAdapter(teaList, getActivity());
+
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
             recyclerView.setLayoutManager(mLayoutManager);
-            recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
             recyclerView.setAdapter(mAdapter);
             recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),
                     DividerItemDecoration.VERTICAL));
@@ -55,7 +59,6 @@ public class Tea_List extends Fragment {
         add_tea_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 
                 Intent intent = new Intent(getActivity(), TeaAdd.class);
                 startActivityForResult(intent, 1);
@@ -80,8 +83,26 @@ public class Tea_List extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d("fire", "just success testing");
 
+
         super.onActivityResult(requestCode, resultCode, data);
-        add_tea();
+
+        if (resultCode == TeaAdd.ADD_TEA){
+
+
+
+
+            add_tea(
+
+                    data.getStringExtra("tea_name"),
+                    data.getStringExtra("tea_description"),
+                    Integer.parseInt(data.getStringExtra("tea_temperature")),
+                    Integer.parseInt(data.getStringExtra("tea_time")),
+                    Integer.parseInt(data.getStringExtra("tea_caffeine"))
+
+
+
+            );
+        }
 
 
 
@@ -93,8 +114,8 @@ public class Tea_List extends Fragment {
 
     }
 
-    public void add_tea(){
-        teaList.add(new Tea("test tea", "50", 2, "desc", 5));
+    public void add_tea(String name, String description, int temperature, int time, int caffeine){
+        teaList.add(new Tea(name, temperature, time, description, caffeine, 1));
         updateAdapter();
     }
 
@@ -102,28 +123,29 @@ public class Tea_List extends Fragment {
     public void initTeaData(){
 
 
-        Tea tea = new Tea("Black Tea", "20", 5, "1", 1);
+
+
+        Tea tea = new Tea("Black Tea", 70,
+                80, "Black Tea is one of the world's most drank type of tea.",
+                100, 1);
         teaList.add(tea);
 
-        tea = new Tea("Green Tea", "40", 5, "1", 1);
+        tea = new Tea("Oolong Tea", 30, 5, "1", 1, 1);
         teaList.add(tea);
 
-        tea = new Tea("Oolong Tea", "30", 5, "1", 1);
+        tea = new Tea("Green Tea", 30, 5, "1", 1, 1);
         teaList.add(tea);
 
-        tea = new Tea("Yellow Tea", "20", 5, "1", 1);
+        tea = new Tea("White Tea", 30, 5, "1", 1, 1);
         teaList.add(tea);
 
-        tea = new Tea("Jasmine Tea", "20", 5, "1", 1);
+        tea = new Tea("Pu-erh Tea", 30, 50, "1", 1, 1);
         teaList.add(tea);
 
-        tea = new Tea("Whey Tea", "30", 5, "1", 1);
+        tea = new Tea("Herbal Tea", 30, 5, "1", 1, 1);
         teaList.add(tea);
 
-        tea = new Tea(" Milk Tea", "20", 5, "1", 1);
-        teaList.add(tea);
-
-        tea = new Tea("Flower Bad Tea", "20", 5, "1", 1);
+        tea = new Tea("Matcha", 30, 5, "1", 1, 1);
         teaList.add(tea);
 
 

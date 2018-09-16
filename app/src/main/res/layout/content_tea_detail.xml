@@ -37,12 +37,13 @@
 
 
             <TextView
-                android:id="@+id/imageVi2ew5"
+                android:id="@+id/ff"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textSize="20sp"
                 android:paddingHorizontal="16dp"
                 android:textAlignment="center"
+                android:textStyle="bold"
                 android:text="Tea Name"
                 />
 
@@ -61,7 +62,7 @@
 
 
             <TextView
-                android:id="@+id/imageView5"
+                android:id="@+id/tea_description"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textSize="20sp"
@@ -82,27 +83,39 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView33"
+                    android:id="@+id/tea_time"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentBottom="true"
-                    android:text="Brew Time: 80 s"
+                    android:text="Time: 80 s"
                     android:layout_weight="1"
                     android:layout_margin="8dp"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textAlignment="center"
                     />
 
 
                 <TextView
-                    android:id="@+id/textViewk33"
+                    android:id="@+id/tea_temperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:text="Temp: 40C (90F)"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:textSize="16sp"
+                    android:textAlignment="center"
+                    />
+
+                <TextView
+                    android:id="@+id/tea_caffeine"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentBottom="true"
                     android:text="Caffeine: 50 mg"
                     android:layout_weight="1"
                     android:layout_margin="8dp"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textAlignment="center"
                     />
 
