@@ -64,7 +64,6 @@ public class TeaAdapter extends RecyclerView.Adapter<TeaAdapter.TeaViewHolder>{
         teaList.clear();
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull TeaAdapter.TeaViewHolder holder, final int position) {
         holder.tea_name.setText(teaList.get(position).get_name());

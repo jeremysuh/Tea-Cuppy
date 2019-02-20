@@ -30,6 +30,9 @@ public class Timer extends Fragment{
 
             if (clock_time <= -1 ) {
                 tea_time.setText("Tea is ready!");
+                //update stats
+                Personal.update_user_data();
+
             }else{
                 tea_time.setText(Integer.toString(clock_time--) + " seconds");
             }

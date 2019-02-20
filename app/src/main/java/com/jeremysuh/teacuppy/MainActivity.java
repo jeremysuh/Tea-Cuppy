@@ -1,6 +1,8 @@
 package com.jeremysuh.teacuppy;
 
+import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -16,7 +18,21 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TabHost;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+
+
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.widget.Toast;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -53,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("fire", "fire");
 
 
-         //Create the adapter that will return a fragment for each of the four
+        //Create the adapter that will return a fragment for each of the four
        //  primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
@@ -62,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
         //  Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setOffscreenPageLimit(4);
+        mViewPager.setOffscreenPageLimit(3);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -72,6 +89,9 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d("fire", "purple");
 
+        //FloatingActionButton bu = (FloatingActionButton) findViewById(R.id.test_button);
+
+
 
     }
 
@@ -80,13 +100,14 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
         return true;
     }
+
 
     @Override
     public void onResume(){
         super.onResume();
-
 
         Log.d("fire", "water");
     }
@@ -146,13 +167,14 @@ public class MainActivity extends AppCompatActivity {
             switch (position) {
 
                 case 0:
+                    Log.d("fire", "one tab");
                     return new Tea_List();
                 case 1:
+                    Log.d("fire", "two tab");
                     return new Timer();
                 case 2:
+                    Log.d("fire", "three tab");
                     return new Personal();
-                case 3:
-                    return new Places();
                 default: return null;
 
             }
@@ -164,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 4 total pages.
-            return 4;
+            return 3;
         }
     }
 }

@@ -20,20 +20,86 @@
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintTop_creator="1" />
 
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="173dp"
-        android:layout_height="157dp"
-        android:layout_marginBottom="204dp"
-        android:layout_marginEnd="87dp"
-        android:layout_marginLeft="124dp"
-        android:layout_marginRight="87dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="150dp"
-        android:text="Switch"
+    <View android:id="@+id/rectangle_at_the_top"
+        android:layout_width="match_parent"
+        android:layout_height="288dp"
+        android:layout_alignParentTop="true"
+        android:background="#ebb380"
+        android:visibility="visible"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/common_google_signin_btn_icon_light"
+        app:layout_constraintBottom_toBottomOf="@+id/rectangle_at_the_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="113dp"
+        android:layout_height="115dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="128dp"
+        android:src="@android:drawable/sym_def_app_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/rectangle_at_the_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rectangle_at_the_top" />
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graph_one"
+        android:layout_width="match_parent"
+        android:layout_height="223dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/rectangle_at_the_top" />
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graph_two"
+        android:layout_width="match_parent"
+        android:layout_height="223dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rectangle_at_the_top" />
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graph_three"
+        android:layout_width="match_parent"
+        android:layout_height="223dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rectangle_at_the_top" />
 
 </android.support.constraint.ConstraintLayout>
