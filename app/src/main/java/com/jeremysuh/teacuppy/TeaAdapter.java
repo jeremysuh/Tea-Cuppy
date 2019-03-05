@@ -2,12 +2,14 @@ package com.jeremysuh.teacuppy;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -34,6 +36,10 @@ public class TeaAdapter extends RecyclerView.Adapter<TeaAdapter.TeaViewHolder>{
     public TeaAdapter.TeaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, final int viewType) {
 
         final View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.tea_list_row, parent, false);
+
+
+
+
         //  itemView.setId(idCount);
 
       //  Log.d("fire", ""+idCount);
@@ -67,6 +73,14 @@ public class TeaAdapter extends RecyclerView.Adapter<TeaAdapter.TeaViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull TeaAdapter.TeaViewHolder holder, final int position) {
         holder.tea_name.setText(teaList.get(position).get_name());
+
+        String mDrawableName = "tea_"+(position+1);
+        int resID = context.getResources().getIdentifier(mDrawableName , "drawable", context.getPackageName());
+
+        holder.tea_image.setImageResource(resID);
+
+        Log.d("pos", ""+position);
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +93,9 @@ public class TeaAdapter extends RecyclerView.Adapter<TeaAdapter.TeaViewHolder>{
                                ""+teaList.get(position).get_brew_time());
                       intent.putExtra("tea_caffeine",
                            ""+teaList.get(position).get_caffeine());
+                        intent.putExtra("tea_calories",
+                        ""+teaList.get(position).get_calories());
+
                     intent.putExtra("tea_description", teaList.get(position).get_description());
                       ((Activity) context).startActivityForResult(intent, 2);
             }
@@ -95,11 +112,15 @@ public class TeaAdapter extends RecyclerView.Adapter<TeaAdapter.TeaViewHolder>{
 
     public class TeaViewHolder extends RecyclerView.ViewHolder {
         public TextView tea_name;
-      //  public TextView tea_temperature;
+        public ImageView tea_image;
+
+        //  public TextView tea_temperature;
 
         public TeaViewHolder(View view) {
             super(view);
             tea_name = (TextView) view.findViewById(R.id.ff);
+            tea_image = (ImageView) view.findViewById(R.id.tea_image);
+
         }
     }
 }

@@ -139,7 +139,15 @@ public class MainActivity extends AppCompatActivity {
 
             Log.d("fire", data.getStringExtra("testy"));
 
+
+            //stats to add after brew complete
+            Personal.to_add_caffeine = Integer.parseInt(data.getStringExtra("tea_caffeine"));
+            Personal.to_add_calories = Integer.parseInt(data.getStringExtra("tea_calories"));
+
+
             Timer.update(data.getStringExtra("tea_name"), Integer.parseInt(data.getStringExtra("tea_time")));
+            Timer.start_button.setEnabled(true);
+            //here
 
 
             TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);

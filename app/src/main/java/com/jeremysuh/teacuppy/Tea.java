@@ -7,10 +7,11 @@ public class Tea {
     private int brew_time;
     private String description;
     private int caffeine;
+    private int calories;
 
     private int id;
 
-    public Tea(String name, int temperature, int brew_time, String description, int caffeine, int id){
+    public Tea(String name, int temperature, int brew_time, String description, int caffeine, int id, int calories){
 
         this.name = name;
         this.brew_temperature = temperature;
@@ -18,6 +19,7 @@ public class Tea {
         this.description = description;
         this.id = id;
         this.caffeine = caffeine;
+        this.calories = calories;
 
     }
 
@@ -47,6 +49,13 @@ public class Tea {
     }
     public int get_caffeine(){
         return caffeine;
+    }
+
+    public void set_calories(int n){
+        calories = n;
+    }
+    public int get_calories(){
+        return calories;
     }
 
     public void set_description(String n){

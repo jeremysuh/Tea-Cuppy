@@ -13,6 +13,54 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
+
+    <string name="black_tea_description">
+
+    Black tea is one of the most commonm tea around the world. It is produced when dried tea leaves are
+        rolled and allowed to oxidize, developing a natural flavor and color in the leaf.
+
+    </string>
+    <string name="green_tea_description">
+
+        Green tea is a type of tea originated from China.  It is made from Camellia sinensis leaves and buds that
+        have not undergone the same oxidation process as those of black teas and oolong teaas.
+
+
+    </string>
+
+    <string name="oolong_tea_description">
+
+        Oolong is a semi-oxidized tea that originated from China. It is produced through the process of its leaves
+        withering under the sun and oxidationg into a curly and twisty shape.
+
+
+    </string>
+
+    <string name="puerh_tea_description">
+
+        Pu-erh tea is made from the leaves and stems of the Camellia sinensis plant. This is the same
+        plant as that of oolong and black tea leaves, but having undergone a different process.
+
+    </string>
+    <string name="white_tea_description">
+
+        White tea is produced from the Camellia sinensis plant, similar to that of black tea, however
+        with the key difference of having undergone minimal processing.
+
+    </string>
+    <string name="matcha_tea_description">
+
+        Matcha is the finely ground powder that has been specially grown and processed from green tea leaves.
+    </string>
+
+
+    <string name="herbal_tea_description">
+
+        Herbal teas are made through the infusion of herbs, spices, or other plant material in hot water.
+
+    </string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_tea_detail">TeaDetail</string>

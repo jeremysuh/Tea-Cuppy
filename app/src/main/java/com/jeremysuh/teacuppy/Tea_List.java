@@ -115,7 +115,7 @@ public class Tea_List extends Fragment {
     }
 
     public void add_tea(String name, String description, int temperature, int time, int caffeine){
-        teaList.add(new Tea(name, temperature, time, description, caffeine, 1));
+        teaList.add(new Tea(name, temperature, time, description, caffeine, 1, 0));
         updateAdapter();
     }
 
@@ -125,27 +125,27 @@ public class Tea_List extends Fragment {
 
 
 
-        Tea tea = new Tea("Black Tea", 70,
-                80, "Black Tea is one of the world's most drank type of tea.",
-                100, 1);
+        Tea tea = new Tea("Black Tea", 205,
+                60*4, getString(R.string.black_tea_description),
+                47, 1, 0);
         teaList.add(tea);
 
-        tea = new Tea("Oolong Tea", 30, 5, "1", 1, 1);
+        tea = new Tea("Oolong Tea", 192, 60*4, getString(R.string.oolong_tea_description), 37, 1,0);
         teaList.add(tea);
 
-        tea = new Tea("Green Tea", 30, 5, "1", 1, 1);
+        tea = new Tea("Green Tea", 182, 60*3, getString(R.string.green_tea_description), 35, 1,0);
         teaList.add(tea);
 
-        tea = new Tea("White Tea", 30, 5, "1", 1, 1);
+        tea = new Tea("White Tea", 180, 60*5, getString(R.string.white_tea_description), 31, 1,0);
         teaList.add(tea);
 
-        tea = new Tea("Pu-erh Tea", 30, 50, "1", 1, 1);
+        tea = new Tea("Pu-erh Tea", 195, 60*4, getString(R.string.puerh_tea_description), 35, 1,0);
         teaList.add(tea);
 
-        tea = new Tea("Herbal Tea", 30, 5, "1", 1, 1);
+        tea = new Tea("Herbal Tea", 177, 60*4, getString(R.string.herbal_tea_description), 0, 1,0);
         teaList.add(tea);
 
-        tea = new Tea("Matcha", 30, 5, "1", 1, 1);
+        tea = new Tea("Matcha", 175, 60*2, getString(R.string.matcha_tea_description), 72, 1,0);
         teaList.add(tea);
 
 

@@ -1,6 +1,7 @@
 package com.jeremysuh.teacuppy;
 
 
+import android.media.RingtoneManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class Timer extends Fragment{
@@ -18,9 +20,15 @@ public class Timer extends Fragment{
     public static View rootView;
     public static TextView tea_name;
     public static TextView tea_time;
+    public static  Button start_button;
 
     static boolean timer_on = false;
+    static boolean can_update = true;
     static int clock_time = 60;
+
+    static boolean time_ended = false;
+
+    private static ImageView img;
 
     static Handler timerHandler = new Handler();
     static Runnable timerRunnable = new Runnable(){
@@ -28,15 +36,39 @@ public class Timer extends Fragment{
         @Override
         public void run() {
 
-            if (clock_time <= -1 ) {
+            if (clock_time <= 0 ) {
                 tea_time.setText("Tea is ready!");
+
+                start_button.setText("Start");
+                timer_on = false;
+                start_button.setEnabled(false);
+                img.setImageResource(R.drawable.teapot_1);
+
                 //update stats
-                Personal.update_user_data();
+                if (time_ended){
+                    Log.d("water", "User Data Updated");
+
+                    if (can_update){
+                        Personal.update_user_data();
+                        can_update = false;
+                    }
+                }
+                time_ended = true;
 
             }else{
+                time_ended = false;
+
+                if (clock_time % 2 == 0){
+                    img.setImageResource(R.drawable.teapot_2);
+
+                }else{
+                    img.setImageResource(R.drawable.teapot_3);
+
+                }
+
+
                 tea_time.setText(Integer.toString(clock_time--) + " seconds");
             }
-            Log.d("water", "timer works");
             timerHandler.postDelayed(this, 1000);
 
         }
@@ -46,11 +78,19 @@ public class Timer extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
+
+
         rootView = inflater.inflate(R.layout.fragment_timer, container, false);
         tea_name = (TextView) rootView.findViewById(R.id.ff);
         tea_time = (TextView) rootView.findViewById(R.id.tea_time);
 
-        final Button start_button = (Button) rootView.findViewById(R.id.start_button);
+        start_button = (Button) rootView.findViewById(R.id.start_button);
+        start_button.setEnabled(false);
+
+
+        img = (ImageView) rootView.findViewById(R.id.imageView3);
+        img.setImageResource(R.drawable.teapot_1);
+
         start_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,10 +99,13 @@ public class Timer extends Fragment{
                     start_button.setText("Start");
                     timerHandler.removeCallbacks(timerRunnable);
 
+
                 }else{
                     timer_on = true;
-                    start_button.setText("Stop");
+                    start_button.setText("Pause");
                     timerHandler.postDelayed(timerRunnable, 0);
+
+
                 }
             }
         });
@@ -88,6 +131,8 @@ public class Timer extends Fragment{
 
 
     public static void reset_clock(){
+
+        can_update = true;
         timerHandler.removeCallbacks(timerRunnable);
 
     }
