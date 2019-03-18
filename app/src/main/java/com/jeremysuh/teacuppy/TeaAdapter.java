@@ -22,13 +22,11 @@ public class TeaAdapter extends RecyclerView.Adapter<TeaAdapter.TeaViewHolder>{
     public int idCount = 0;
 
 
-
     public TeaAdapter(List<Tea> tealist, Context context){
 
         this.context = context;
         this.teaList = tealist;
         idCount = 0;
-        Log.d("fire", "cell constructo begin begin");
 
     }
     @NonNull
@@ -36,33 +34,6 @@ public class TeaAdapter extends RecyclerView.Adapter<TeaAdapter.TeaViewHolder>{
     public TeaAdapter.TeaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, final int viewType) {
 
         final View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.tea_list_row, parent, false);
-
-
-
-
-        //  itemView.setId(idCount);
-
-      //  Log.d("fire", ""+idCount);
-
-       /// idCount++;
-
-
-       // itemView.setOnClickListener(new View.OnClickListener() {
-    //      @Override
-       //     public void onClick(View view) {
-            ///    Log.d("fire", ""+itemView.getId());
-           //     Intent intent = new Intent(context, TeaDetail.class);
-          //      intent.putExtra("tea_name", teaList.get(itemView.getId()).get_name());
-         //       intent.putExtra("tea_temperature",
-          //              "Temp: "+teaList.get(itemView.getId()).get_temperature()+" F");
-        //        intent.putExtra("tea_time",
-         //               "Time: "+teaList.get(itemView.getId()).get_brew_time() + " s");
-          //      intent.putExtra("tea_caffeine",
-             //           "Caffeine: "+teaList.get(itemView.getId()).get_caffeine() + " mg");
-            //    intent.putExtra("tea_description", teaList.get(itemView.getId()).get_description());
-          //      ((Activity) context).startActivityForResult(intent, 2);
-       //     }
-     //   });
         return new TeaViewHolder(itemView);
     }
 
@@ -74,12 +45,17 @@ public class TeaAdapter extends RecyclerView.Adapter<TeaAdapter.TeaViewHolder>{
     public void onBindViewHolder(@NonNull TeaAdapter.TeaViewHolder holder, final int position) {
         holder.tea_name.setText(teaList.get(position).get_name());
 
-        String mDrawableName = "tea_"+(position+1);
+        int pos_set = position;
+
+        String mDrawableName = "tea_"+(pos_set+1);
+
+        if (pos_set > 6) mDrawableName = "tea_1";
+
         int resID = context.getResources().getIdentifier(mDrawableName , "drawable", context.getPackageName());
 
         holder.tea_image.setImageResource(resID);
 
-        Log.d("pos", ""+position);
+        Log.d("pos", ""+pos_set);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

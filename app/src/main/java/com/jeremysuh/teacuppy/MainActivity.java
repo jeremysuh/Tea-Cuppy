@@ -63,19 +63,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        Log.d("fire", "fire");
-
 
         //Create the adapter that will return a fragment for each of the four
        //  primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
-        Log.d("fire", "grass");
-
 
         //  Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -86,12 +79,6 @@ public class MainActivity extends AppCompatActivity {
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
-
-        Log.d("fire", "purple");
-
-        //FloatingActionButton bu = (FloatingActionButton) findViewById(R.id.test_button);
-
-
 
     }
 
@@ -114,16 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-      //  if (id == R.id.action_settings) {
-        //    return true;
-      //  }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -137,18 +115,13 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode == 2 && resultCode == TeaDetail.GO_TO_TIMER) {
 
-            Log.d("fire", data.getStringExtra("testy"));
-
-
             //stats to add after brew complete
             Personal.to_add_caffeine = Integer.parseInt(data.getStringExtra("tea_caffeine"));
             Personal.to_add_calories = Integer.parseInt(data.getStringExtra("tea_calories"));
 
-
             Timer.update(data.getStringExtra("tea_name"), Integer.parseInt(data.getStringExtra("tea_time")));
             Timer.start_button.setEnabled(true);
             //here
-
 
             TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
             TabLayout.Tab tab = tabLayout.getTabAt(1);

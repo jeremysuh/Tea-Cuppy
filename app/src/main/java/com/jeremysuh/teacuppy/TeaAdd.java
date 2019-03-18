@@ -29,7 +29,6 @@ public class TeaAdd extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-
         Button addButton = (Button) findViewById(R.id.add_button);
         edit_tea_name = (EditText) findViewById(R.id.edit_tea_name);
         edit_tea_time = (EditText) findViewById(R.id.edit_tea_time);

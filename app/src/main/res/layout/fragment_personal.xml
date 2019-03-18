@@ -172,6 +172,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_centerHorizontal="true"
@@ -202,12 +203,10 @@
 
     </LinearLayout>
 
-
-
     <com.jjoe64.graphview.GraphView
         android:id="@+id/graph_one"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="320dp"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginLeft="16dp"
