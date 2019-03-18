@@ -40,6 +40,9 @@ public class TeaAdd extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
                 Intent intent = new Intent();
                 intent.putExtra("tea_name", TeaAdd.this.edit_tea_name.getText().toString());
                 intent.putExtra("tea_description", TeaAdd.this.edit_tea_description.getText().toString());

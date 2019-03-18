@@ -20,11 +20,11 @@
             android:layout_weight="0.4"
             >
 
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/tea_1" />
+            <ImageView
+                android:id="@+id/tea_detail_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/tea_1" />
 
         </RelativeLayout>
 

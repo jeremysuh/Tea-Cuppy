@@ -39,35 +39,23 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+     // will provide fragments for each of the sections
+     SectionsPagerAdapter mSectionsPagerAdapter;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
+    //mViewPager will host the section contents
     private ViewPager mViewPager;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        //random comment
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //Create the adapter that will return a fragment for each of the four
-       //  primary sections of the activity.
+        // Create the adapter that will return a fragment for each of the four
+        //  primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         //  Set up the ViewPager with the sections adapter.
@@ -82,21 +70,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-
         return true;
     }
-
 
     @Override
     public void onResume(){
         super.onResume();
-
-        Log.d("fire", "water");
     }
 
         @Override
@@ -105,24 +88,22 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d("fire", ""+requestCode);
-
 
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 2 && resultCode == TeaDetail.GO_TO_TIMER) {
 
-            //stats to add after brew complete
+            //information to be stored to Personal
             Personal.to_add_caffeine = Integer.parseInt(data.getStringExtra("tea_caffeine"));
             Personal.to_add_calories = Integer.parseInt(data.getStringExtra("tea_calories"));
 
+            //updates timer
             Timer.update(data.getStringExtra("tea_name"), Integer.parseInt(data.getStringExtra("tea_time")));
             Timer.start_button.setEnabled(true);
-            //here
 
+            //switch tab
             TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
             TabLayout.Tab tab = tabLayout.getTabAt(1);
             tab.select();
@@ -130,10 +111,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
+
+    // adapter for each section
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -144,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-
             switch (position) {
 
                 case 0:
@@ -159,9 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 default: return null;
 
             }
-         //   return PlaceholderFragment.newInstance(position + 1);
         }
-
 
 
         @Override

@@ -1,5 +1,7 @@
 package com.jeremysuh.teacuppy;
 
+
+// date class; used when storing data to the database for user stats
 public class Date {
 
     private String date;

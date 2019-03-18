@@ -33,14 +33,15 @@ import java.util.TimeZone;
 public class Personal extends Fragment{
 
     public static View rootView;
-    //
+
+    //graphs
     public static GraphView graph;
     public static GridLabelRenderer gridLabel;
 
-
+    //database
     private static UserDatabaseHelper db;
 
-
+    //values for each stats tab
     private  static int cup_values[] = {40, 50, 43, 2, 20, 41, 39};
     private  static int caffeine_values[] = {8, 19, 11, 39, 32, 5, 22};
     private  static int calorie_values[] = {29, 14, 15, 45, 27, 30, 44};
@@ -50,10 +51,10 @@ public class Personal extends Fragment{
     public static int to_add_calories = 0;
     public static int to_add_caffeine = 0;
 
-
+    //screen state
     private static int current_screen = 1;
-    //data
 
+    //data
     public static int graph_num = 1; // 1 = cup, 2 = caffeine, 3 = calories
 
 
@@ -70,24 +71,16 @@ public class Personal extends Fragment{
     }
     static HashMap<String, UserData> user = new HashMap<String, UserData>();
 
-
-    //key = data, value = day stats class?
-
-
-    static String[] tea_favorite;
-
+    static String[] tea_favorite; //store favorite tea
 
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
         rootView = inflater.inflate(R.layout.fragment_personal, container, false);
-        // TextView textview = (TextView) rootView.findViewById(R.id.text_test);
-        //textview.setText("wee woo")
 
-        //Instantiate database handler
+        //instantiate database handler
         db=new UserDatabaseHelper(getContext());
-
 
         Button calories_button;
         Button caffeine_button;
@@ -103,11 +96,11 @@ public class Personal extends Fragment{
         graph.setBackgroundColor(Color.argb(0,0,0,0));
 
         graph.getViewport().setMinX(1);
-         graph.getViewport().setMaxX(7);
-         graph.getGridLabelRenderer().setNumHorizontalLabels(7);
+        graph.getViewport().setMaxX(7);
+        graph.getGridLabelRenderer().setNumHorizontalLabels(7);
         graph.getViewport().setXAxisBoundsManual(true);
 
-
+        //initialize graph
         LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
                 new DataPoint(1, cup_values[0]),
                 new DataPoint(2, cup_values[1]),
@@ -117,16 +110,14 @@ public class Personal extends Fragment{
                 new DataPoint(6, cup_values[5]),
                 new DataPoint(7, cup_values[6]),
         });
-        graph.addSeries(series);
 
+        graph.addSeries(series);
         load_user_data();
 
 
         cup_button = (Button) rootView.findViewById(R.id.cup_button);
-
         cup_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // TODO Auto-generated method stub
 
                 if (graph_num != 1) show_cups();
                 graph_num = 1;
@@ -138,12 +129,8 @@ public class Personal extends Fragment{
 
 
         caffeine_button = (Button) rootView.findViewById(R.id.caffeine_button);
-
         caffeine_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Log.d("fire", "caffeine!");
-
 
                 if (graph_num != 2) show_caffeine();
                 graph_num = 2;
@@ -153,15 +140,11 @@ public class Personal extends Fragment{
 
 
         calories_button = (Button) rootView.findViewById(R.id.calories_button);
-
         calories_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Log.d("fire", "calories!");
 
                 if (graph_num != 3) show_calories();
                 graph_num = 3;
-
 
             }
         });
@@ -176,11 +159,10 @@ public class Personal extends Fragment{
     public static void load_user_data(){
 
 
-
-
         //fill with empty user data day struct/classes
         String last_seven_days[] = {"","","","","","","",};
 
+        //calendar instance and fill List with all; databse entries
         Calendar calendar2 = Calendar.getInstance(TimeZone.getDefault());
         ArrayList<Date> contacts2 = new ArrayList<>(db.get_allDates());
 
@@ -190,17 +172,16 @@ public class Personal extends Fragment{
         int total_calories = 0;
         int total_caffeine = 0;
 
+        //scan through all entries and load total stats
         for (int c = 0; c < contacts2.size(); ++c){
 
             total_cups += contacts2.get(c).get_cups();
             total_caffeine += contacts2.get(c).get_caffeine();
             total_calories += contacts2.get(c).get_calories();
 
-
         }
 
         //edit text
-
         TextView cup_text = (TextView) rootView.findViewById(R.id.cup_text);
         cup_text.setText(""+total_cups);
 
@@ -210,9 +191,7 @@ public class Personal extends Fragment{
         TextView calorie_text = (TextView) rootView.findViewById(R.id.calorie_text);
         calorie_text.setText(""+total_calories+ " kcal");
 
-
-
-
+        //get last 7 day key values
         for (int i = 0; i < 7; ++i) {
 
             String key2 = "";
@@ -221,15 +200,11 @@ public class Personal extends Fragment{
             key2 = key2 + "day" + calendar2.get(Calendar.DAY_OF_MONTH);
 
             last_seven_days[7-i-1] = key2;
-
-            Log.d("date", ""+key2);
-
             calendar2.add(Calendar.DAY_OF_YEAR, -1);
 
         }
 
-
-
+        // load info for the past 7 days
         for (int i = 0; i < 7; ++i){
 
             String key_2 = last_seven_days[7-i-1];
@@ -237,13 +212,8 @@ public class Personal extends Fragment{
 
             for(int j = 0; j < contacts2.size(); ++j){
 
-
-                Log.d("comparing..", "key: "+ key_2 + " contact: " +contacts2.get(j).get_date());
-
-
                 if (key_2.equals(contacts2.get(j).get_date())){ //found
 
-                    Log.d("water", "IT HAS BEEN FOUND WOOHOO");
                     found_2 = true;
                     cup_values[7-i-1]  = contacts2.get(j).get_cups();
                     caffeine_values[7-i-1]= contacts2.get(j).get_caffeine();
@@ -262,10 +232,7 @@ public class Personal extends Fragment{
 
         }
 
-        for (int k = 0; k < cup_values.length; ++k) {
-            Log.d("array contents", "cup_values: " + cup_values[k]);
-        }
-
+        //change graph depending on which screen state
         if (current_screen == 1){
             show_cups();
         }else if (current_screen == 2){
@@ -293,7 +260,7 @@ public class Personal extends Fragment{
         int old_caffeine = 0;
         int old_calories = 0;
 
-
+        //look through data
         boolean found = false;
         for(int i = 0; i < contacts.size(); ++i){
 
@@ -307,34 +274,27 @@ public class Personal extends Fragment{
 
         }
 
-
+        //if key exists, just update
         if (found){
 
-
             Date d = new Date(key, 1+old_cups, to_add_calories+old_calories, to_add_caffeine+old_caffeine);
-            db.updatePlayer(d);
+            db.updateDate(d);
 
-        }else{
-
+        }else{ //otherwise, add new date entry
 
             Date d = new Date(key, 0, 0, 0);
             db.addDayStats(d);
-
         }
 
         load_user_data();
-
-       // update_graphs();
-
     }
 
     public static void show_cups() {
 
         current_screen = 1;
-
-
         graph.removeAllSeries();
 
+        //update to cups info
         LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
                 new DataPoint(1, cup_values[0]),
                 new DataPoint(2, cup_values[1]),
@@ -344,7 +304,6 @@ public class Personal extends Fragment{
                 new DataPoint(6, cup_values[5]),
                 new DataPoint(7, cup_values[6]),
         });
-
 
 
         gridLabel.setHorizontalAxisTitle("Days");
@@ -360,10 +319,9 @@ public class Personal extends Fragment{
     public static void show_calories() {
 
         graph.removeAllSeries();
-
         current_screen = 3;
 
-
+        //update to calorie info
         LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
                 new DataPoint(1, calorie_values[0]),
                 new DataPoint(2, calorie_values[1]),
@@ -374,25 +332,24 @@ public class Personal extends Fragment{
                 new DataPoint(7, calorie_values[6]),
         });
 
-
+        //update labels
         gridLabel.setHorizontalAxisTitle("Days");
         gridLabel.setVerticalAxisTitle("Calories (kcal)");
         graph.setTitle("Calories (Past 7 days)");
 
-
         graph.addSeries(series);
-
 
     }
 
     public static void show_caffeine() {
 
+        //change screen state
         current_screen = 1;
 
+        //clear graph
         graph.removeAllSeries();
 
-
-
+        //update graph to caffeine values
         LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
                 new DataPoint(1, caffeine_values[0]),
                 new DataPoint(2, caffeine_values[1]),
@@ -403,31 +360,16 @@ public class Personal extends Fragment{
                 new DataPoint(7, caffeine_values[6]),
         });
 
-
+        //update labels
         gridLabel.setHorizontalAxisTitle("Days");
         gridLabel.setVerticalAxisTitle("Caffeine (mg)");
         graph.setTitle("Caffeine (Past 7 days)");
-
-
         graph.addSeries(series);
-
-
     }
 
+        //clear graphs
         public static void update_graphs(){
-
         graph.removeAllSeries();
-      /*
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
-                new DataPoint(0, 0),
-                new DataPoint(1, 2),
-                new DataPoint(2, 3),
-                new DataPoint(3, 2),
-                new DataPoint(4, 6)
-        });
-        graph.addSeries(series);
-
-        */
-    }
+        }
 
 }

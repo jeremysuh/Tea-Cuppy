@@ -21,10 +21,12 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
     private static final String[] COLUMNS = {KEY_DATE, KEY_CUPS, KEY_CAFFEINE,
             KEY_CALORIES};
 
+    //constructor
     public UserDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    //create data base
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATION_TABLE = "CREATE TABLE Calendar ( "
@@ -34,6 +36,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATION_TABLE);
     }
 
+    //update database
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // you can implement here migration process
@@ -41,8 +44,8 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         this.onCreate(db);
     }
 
+    // add new date to the data base
     public int addDayStats(Date date) {
-
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -57,8 +60,8 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         return 0;
     }
 
-
-    public int updatePlayer(Date date) {
+    //update a particular date
+    public int updateDate(Date date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_DATE, date.get_date());
@@ -76,6 +79,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         return i;
     }
 
+    // get all dates (key) in the data base, store it in a list, and send it back
     public List<Date> get_allDates() {
 
         List<Date> dates = new LinkedList<Date>();
@@ -95,11 +99,6 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
 
-
         return dates;
     }
-
-
-
-
 }
